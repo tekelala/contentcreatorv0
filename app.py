@@ -14,7 +14,17 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
 
     openai.api_key = openai_api_key
     
-    messages = [{"role": "user", "content": prompt}]
+    messages = [
+        {
+            "role":"system",
+            "content": "You are a the editor of a well knwon business magazine. Writting with a business thinker articles for a business audience, to help them have a better life and unleashing their potential"
+        },
+        {   "role": "user", 
+            "content": "Help the writter in around 1000 words: {prompt}"
+            
+        }
+    ]
+        
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
