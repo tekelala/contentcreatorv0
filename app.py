@@ -23,23 +23,23 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
     return response.choices[0].message["content"]
 
 # Function to get the table
-#def get_completion_table(prompt, model="gpt-3.5-turbo"):
+def get_completion_table(prompt, model="gpt-3.5-turbo"):
     # Set the OpenAI API key from the environment variable
-    #openai_api_key = os.getenv('OPENAI_API_KEY')
+    openai_api_key = os.getenv('OPENAI_API_KEY')
     
     # Check if the API key is set
-    #if not openai_api_key:
-        #return "API key for OpenAI not found. Please set the 'OPENAI_API_KEY' environment variable."
+    if not openai_api_key:
+        return "API key for OpenAI not found. Please set the 'OPENAI_API_KEY' environment variable."
 
-    #openai.api_key = openai_api_key
-    #messages = [{"role": "user", "content": prompt}]
+    openai.api_key = openai_api_key
+    messages = [{"role": "user", "content": prompt}]
         
-    #response = openai.ChatCompletion.create(
-        #model=model,
-        #messages=messages,
-        #temperature=0.8, # this is the degree of randomness of the model's output
-    #)
-    #return response.choices[0].message["content"]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=0.8, # this is the degree of randomness of the model's output
+    )
+    return response.choices[0].message["content"]
 
 # Streamlit application
 def app():
@@ -60,17 +60,17 @@ def app():
     to be more efficient give your readers more time to focus on the things \
     that matter and use much better their human capabilities, \
     your steps by step guide should be easy to follow and understand \
-    and prioritize the use of free tools and business tools like: \
-    - G Suit and Office when you choose one of each company mention \ 
+    and use of the following business tools: \
+    - Google G Suit and Microsoft Office  when you choose one of each company mention \ 
     the other company equivalent  \
     - OpenAI
+    - Canva
     """
     
     prompt = f"""
     You are ```{role_prompt}``` and your goal is ```{goal_prompt}``` \
     to perform with the assistance of AI tool the following ```{tasks}``` \ 
-    in 1000 words. Then create a table with the following columns: \
-    #Step, Description, AI tool used, Link to the tool.
+    in 1000 words.
     """
 
     # Button to generate content
@@ -81,13 +81,13 @@ def app():
                 # Call the function to get the completion
                 content = get_completion(prompt)
                 # Call the function to get the table
-                #prompt_table = f""" Yor task is to take the {content} and create \
-                    #a table with the following columns: \
-                    #Step, Description, AI tool used, Link to the tool."""
+                prompt_table = f""" Yor task is to take the {content} and create \
+                    a table with the following columns: \
+                    Step, Description, AI tool used, Link to the tool."""
                 #table_sbs = get_completion_table(prompt_table)
                 # Display the generated content
                 st.write(content)
-                #st.write(table_sbs)
+                st.write(table_sbs)
         else:
             st.error("Please enter a task.")
 
