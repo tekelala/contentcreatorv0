@@ -119,7 +119,7 @@ def app():
     """
 
     # Button to generate content
-    iif st.button("Create"):
+    if st.button("Create"):
         # If the input field is not empty, get the content from GPT
         if tasks:
             with st.spinner('Generating content...'):
