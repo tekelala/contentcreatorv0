@@ -120,12 +120,12 @@ def app():
         if tasks:
             with st.spinner('Generating content...'):
                 # Call the function to get the completion
-                content = get_completion(prompt)
+                content = get_completion(prompt, selected_model)
                 # Call the function to get the table
                 prompt_table = f""" Yor task is to take the {content} and create \
                     a table with the following columns: \
                     Step, Description, AI tool used, Link to the tool."""
-                table_sbs = get_completion_table(prompt_table)
+                table_sbs = get_completion_table(prompt_table, selected_model)
                 # Display the generated content
                 st.write(content)
                 st.write(table_sbs)
