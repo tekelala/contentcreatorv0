@@ -84,7 +84,7 @@ def app():
                 prompt_table = f""" Yor task is to take the {content} and create \
                     a table with the following columns: \
                     Step, Description, AI tool used, Link to the tool."""
-                #table_sbs = get_completion_table(prompt_table)
+                table_sbs = get_completion_table(prompt_table)
                 # Display the generated content
                 st.write(content)
                 st.write(table_sbs)
