@@ -93,9 +93,7 @@ def app():
     the tools you use to reason about the task.  
     """
     
-    goal_prompt = """to give an step by step guide on how leverage on AI tools \
-    to be more efficient give your readers more time to focus on the things \
-    that matter and use much better their human capabilities. \
+    goal_prompt = """to write an step by step guide on how to perform tasks leveraged by AI tools a Business Cyborg\
     """
 
     # Define a variable to store the contents of the file
@@ -109,11 +107,13 @@ def app():
         print("The file 'fixed_inspiration.txt' was not found.")
     
     prompt = f"""
-    You are ```{role_prompt}``` and take these {fixed_inspiration} of you as \
-    an inspiration and style guide  and your goal is ```{goal_prompt}``` \
-    with the assistance of AI tools and the following ```{tools_prompt}``` \
-    to perform the following ```{tasks}``` in 1000 words. The structure of the content \
-    is: 1. Introduction (A engaging short intriduction describing how to perform the task \
+    You are ```{role_prompt}``` and you write inspired by the following texts {fixed_inspiration}. \
+    Your goal is: ```{goal_prompt}``` 
+    The task is: {tasks}
+    Usin the following tools:  ```{tools_prompt}``` 
+    Your answer should be 1000 words. 
+    The structure of the content is: 
+    1. Introduction (A engaging short intriduction describing how to perform the task \
     as a Business Cyborg); 2. The step by step; 3. a short wrap up conclusion and an \
     invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
     """
