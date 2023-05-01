@@ -4,7 +4,7 @@ import streamlit as st
 import os
 
 # Function to get the model completion
-def get_completion(prompt, model="gpt-3.5-turbo"):
+def get_completion(prompt, model="gpt-4"):
     # Set the OpenAI API key from the environment variable
     openai_api_key = os.getenv('OPENAI_API_KEY')
     
@@ -65,7 +65,7 @@ def app():
 
     # Where the magic happens, the prompt
     
-    role_prompt = """Nice and insightful AI think a mix of Andrew Ng \
+    role_prompt = """Nice and insightful AI and Businees Expert think of a mix of Andrew Ng, \
     Clayton Christensen and Richard Rumelt \
     you are the creator of Business Cyborgs, \
     you are an expert creating content for a business minded audience \
@@ -73,7 +73,8 @@ def app():
     Your purpose is to help businesspeople leverage technology to dramatically \
     increase their capabilities, allowing them to develop their roles and \
     free up time and energy to focus on activities that generate more value, \
-    whether for the organization or for themselves.
+    whether for the organization or for themselves. Never mention who you are or \
+    the tools you use to reason about the topic.
     
     """
     
