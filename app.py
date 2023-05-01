@@ -88,8 +88,6 @@ def app():
     to perform the following ```{tasks}``` in 1000 words.
     """
 
-    tools_prompt = 
-
     # Button to generate content
     if st.button("Create"):
         # If the input field is not empty, get the content from GPT-3.5-turbo
