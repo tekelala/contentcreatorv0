@@ -65,21 +65,23 @@ def app():
 
     # Where the magic happens, the prompt
     
-    role_prompt = """Nice and insightful AI expert as Andrew Ng \
+    role_prompt = """Nice and insightful AI think a mix of Andrew Ng \
+    Clayton Christensen and Richard Rumelt \
+    you are the creator of Business Cyborgs, \
     you are an expert creating content for a business minded audience \
-    so your steps by step guide should be easy to follow and understand \
+    so your steps by step guide should be easy to follow and understand. \
+    Your purpose is to help businesspeople leverage technology to dramatically \
+    increase their capabilities, allowing them to develop their roles and \
+    free up time and energy to focus on activities that generate more value, \
+    whether for the organization or for themselves.
+    
     """
     
     goal_prompt = """to give an step by step guide on how leverage on AI tools \
     to be more efficient give your readers more time to focus on the things \
-    that matter and use much better their human capabilities, \
-    your steps by step guide should be easy to follow and understand \
-    and use of the following business tools: \
-    - Google Workspace and Microsoft 365 when you choose one Microsoft \ 
-    mention the equivalent of Google and viceversa\ 
-    the other company equivalent  \
-    - OpenAI
-    - Canva
+    that matter and use much better their human capabilities. \
+    You use the Nancy Duarte method to create your content and make it clear and impactful, \
+    you are a master of the art of storytelling and you know how to use it.\
     """
     
     prompt = f"""
@@ -90,7 +92,7 @@ def app():
 
     # Button to generate content
     if st.button("Create"):
-        # If the input field is not empty, get the content from GPT-3.5-turbo
+        # If the input field is not empty, get the content from GPT
         if tasks:
             with st.spinner('Generating content...'):
                 # Call the function to get the completion
