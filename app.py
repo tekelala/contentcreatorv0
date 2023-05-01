@@ -38,7 +38,7 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
         #model=model,
         #messages=messages,
         #temperature=0.8, # this is the degree of randomness of the model's output
-    )
+    #)
     #return response.choices[0].message["content"]
 
 # Streamlit application
