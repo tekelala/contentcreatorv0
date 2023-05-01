@@ -146,13 +146,13 @@ def app():
         selected_language = st.selectbox("Translate text to:", options=language_options)
         # Button to translate
         if st.button("Translate"):
-        with st.spinner('Translating...'):
-            prompt2 = f"""translate {st.session_state.content} to {selected_language}"""
-            prompt3 = f"""translate {st.session_state.table_sbs} to {selected_language}"""
-            content_translated = get_completion(prompt2, selected_model)
-            table_sbs_translated = get_completion_table(prompt3, selected_model)
-            st.write(content_translated)
-            st.write(table_sbs_translated)
+            with st.spinner('Translating...'):
+                prompt2 = f"""translate {st.session_state.content} to {selected_language}"""
+                prompt3 = f"""translate {st.session_state.table_sbs} to {selected_language}"""
+                content_translated = get_completion(prompt2, selected_model)
+                table_sbs_translated = get_completion_table(prompt3, selected_model)
+                st.write(content_translated)
+                st.write(table_sbs_translated)
     
 
 # Run the application
