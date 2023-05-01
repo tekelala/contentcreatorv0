@@ -69,7 +69,8 @@ def app():
     prompt = f"""
     You are ```{role_prompt}``` and your goal is ```{goal_prompt}``` \
     to perform with the assistance of AI tool the following ```{tasks}``` \ 
-    in 1000 words.
+    in 1000 words. Then create a table with the following columns: \
+    #Step, Description, AI tool used, Link to the tool.
     """
 
     # Button to generate content
