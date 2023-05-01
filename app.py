@@ -37,7 +37,7 @@ def get_completion_table(prompt, model="gpt-3.5-turbo"):
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
-        temperature=0.8, # this is the degree of randomness of the model's output
+        temperature=0, # this is the degree of randomness of the model's output
     )
     return response.choices[0].message["content"]
 
@@ -110,6 +110,10 @@ def app():
     invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
     """
 
+    # Dropdown to select the translation language
+    language_options = ["No translation", "Spanish", "German"]
+    selected_language = st.selectbox("Translate text to:", options=language_options)
+
     # Button to generate content
     if st.button("Create"):
         # If the input field is not empty, get the content from GPT
@@ -127,6 +131,18 @@ def app():
                 st.write(table_sbs)
         else:
             st.error("Please enter a task.")
+
+
+    # Button to translate
+    if st.button("Translate"):
+        with st.spinner('Translating...'):
+                prompt2 = f"""translate {content} to {selected_language}"""
+                prompt3 = f"""translate {table_sbs} to {selected_language}"""
+                content_translated = get_completion(prompt2, selected_model)
+                table_sbs_translated = get_completion_table(prompt3, selected_model)
+                st.write(content_translated)
+                st.write(table_sbs_translated)
+    
 
 # Run the application
 if __name__ == "__main__":
