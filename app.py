@@ -16,7 +16,7 @@ def get_completion(prompt, selected_model):
     messages = [{"role": "user", "content": prompt}]
         
     response = openai.ChatCompletion.create(
-        model=model,
+        model=selected_model,
         messages=messages,
         temperature=0.8, # this is the degree of randomness of the model's output
     )
@@ -48,7 +48,7 @@ def app():
 
      # Select widget for choosing GPT Model
     predefined_models = ["gpt-3.5-turbo", "gpt-4"]
-    selected_model = st.select("Select model to use:", options=predefined_models)
+    selected_model = st.selectbox("Select model to use:", options=predefined_models)
 
     # Input field for the user to enter a topic
     tasks = st.text_input("Enter a task:")
