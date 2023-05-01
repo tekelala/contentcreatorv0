@@ -3,6 +3,10 @@ import openai
 import streamlit as st
 import os
 
+# Initialize session state variable (add this line)
+if "is_content_generated" not in st.session_state:
+    st.session_state.is_content_generated = False
+
 # Function to get the model completion
 def get_completion(prompt, selected_model):
     # Set the OpenAI API key from the environment variable
@@ -110,10 +114,6 @@ def app():
     invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
     """
 
-    # Dropdown to select the translation language
-    language_options = ["No translation", "Spanish", "German"]
-    selected_language = st.selectbox("Translate text to:", options=language_options)
-
     # Button to generate content
     if st.button("Create"):
         # If the input field is not empty, get the content from GPT
@@ -129,12 +129,19 @@ def app():
                 # Display the generated content
                 st.write(content)
                 st.write(table_sbs)
+                # Set session state variable to True (add this line)
+                st.session_state.is_content_generated = True
         else:
             st.error("Please enter a task.")
 
 
-    # Button to translate
-    if st.button("Translate"):
+    # Show translation options only if content is generated (add this block)
+    if st.session_state.is_content_generated:
+        # Dropdown to select the translation language
+        language_options = ["No translation", "Spanish", "German"]
+        selected_language = st.selectbox("Translate text to:", options=language_options)
+        # Button to translate
+        if st.button("Translate"):
         with st.spinner('Translating...'):
                 prompt2 = f"""translate {content} to {selected_language}"""
                 prompt3 = f"""translate {table_sbs} to {selected_language}"""
