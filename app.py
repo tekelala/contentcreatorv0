@@ -50,6 +50,12 @@ def app():
     # Title of the application
     st.title("Content Creator, please provide the taks you want to get the step by step guide")
 
+    # Initialize session state variables for content and table_sbs
+    if 'content' not in st.session_state:
+        st.session_state.content = ''
+    if 'table_sbs' not in st.session_state:
+        st.session_state.table_sbs = ''
+
      # Select widget for choosing GPT Model
     predefined_models = ["gpt-3.5-turbo", "gpt-4"]
     selected_model = st.selectbox("Select model to use:", options=predefined_models)
@@ -76,22 +82,20 @@ def app():
     role_prompt = """Nice and insightful AI and Businees Expert think of a mix of Andrew Ng, \
     Clayton Christensen and Richard Rumelt \
     you are the creator of Business Cyborgs, \
-    you are an expert creating content for a business minded audience \
+    you are an expert creating content for a business minded audience,  \
+    You use the Nancy Duarte method to create your content and make it clear and impactful, \
+    you are a master of the art of storytelling and you know how to use it.\
     so your steps by step guide should be easy to follow and understand. \
     Your purpose is to help businesspeople leverage technology to dramatically \
     increase their capabilities, allowing them to develop their roles and \
     free up time and energy to focus on activities that generate more value, \
     whether for the organization or for themselves. Never mention who you are or \
-    the tools you use to reason about the topic and never ask the user to use \
-    storytelling techniques perform the tasks.  
-    
+    the tools you use to reason about the task.  
     """
     
     goal_prompt = """to give an step by step guide on how leverage on AI tools \
     to be more efficient give your readers more time to focus on the things \
     that matter and use much better their human capabilities. \
-    You use the Nancy Duarte method to create your content and make it clear and impactful, \
-    you are a master of the art of storytelling and you know how to use it.\
     """
 
     # Define a variable to store the contents of the file
@@ -109,26 +113,26 @@ def app():
     an inspiration and style guide  and your goal is ```{goal_prompt}``` \
     with the assistance of AI tools and the following ```{tools_prompt}``` \
     to perform the following ```{tasks}``` in 1000 words. The structure of the content \
-    is: 1. Introduction (A engaging short instriduction describing how to perform the task \
+    is: 1. Introduction (A engaging short intriduction describing how to perform the task \
     as a Business Cyborg); 2. The step by step; 3. a short wrap up conclusion and an \
     invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
     """
 
     # Button to generate content
-    if st.button("Create"):
+    iif st.button("Create"):
         # If the input field is not empty, get the content from GPT
         if tasks:
             with st.spinner('Generating content...'):
                 # Call the function to get the completion
-                content = get_completion(prompt, selected_model)
+                st.session_state.content = get_completion(prompt, selected_model)
                 # Call the function to get the table
-                prompt_table = f""" Yor task is to take the {content} and create \
+                prompt_table = f"""Your task is to take the {st.session_state.content} and create \
                     a table with the following columns: \
                     Step, Description, AI tool used, Link to the tool."""
-                table_sbs = get_completion_table(prompt_table, selected_model)
+                st.session_state.table_sbs = get_completion_table(prompt_table, selected_model)
                 # Display the generated content
-                st.write(content)
-                st.write(table_sbs)
+                st.write(st.session_state.content)
+                st.write(st.session_state.table_sbs)
                 # Set session state variable to True (add this line)
                 st.session_state.is_content_generated = True
         else:
@@ -142,13 +146,13 @@ def app():
         selected_language = st.selectbox("Translate text to:", options=language_options)
         # Button to translate
         if st.button("Translate"):
-            with st.spinner('Translating...'):
-                prompt2 = f"""translate {content} to {selected_language}"""
-                prompt3 = f"""translate {table_sbs} to {selected_language}"""
-                content_translated = get_completion(prompt2, selected_model)
-                table_sbs_translated = get_completion_table(prompt3, selected_model)
-                st.write(content_translated)
-                st.write(table_sbs_translated)
+        with st.spinner('Translating...'):
+            prompt2 = f"""translate {st.session_state.content} to {selected_language}"""
+            prompt3 = f"""translate {st.session_state.table_sbs} to {selected_language}"""
+            content_translated = get_completion(prompt2, selected_model)
+            table_sbs_translated = get_completion_table(prompt3, selected_model)
+            st.write(content_translated)
+            st.write(table_sbs_translated)
     
 
 # Run the application
