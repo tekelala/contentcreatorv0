@@ -6,7 +6,13 @@ import os
 # Function to get the model completion
 def get_completion(prompt, model="gpt-3.5-turbo"):
     # Set the OpenAI API key from the environment variable
-    openai.api_key = os.environ['OPENAI_API_KEY']
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+    
+    # Check if the API key is set
+    if not openai_api_key:
+        return "API key for OpenAI not found. Please set the 'OPENAI_API_KEY' environment variable."
+
+    openai.api_key = openai_api_key
     
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
