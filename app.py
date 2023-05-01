@@ -18,7 +18,7 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
-        temperature=0, # this is the degree of randomness of the model's output
+        temperature=0.8, # this is the degree of randomness of the model's output
     )
     return response.choices[0].message["content"]
 
@@ -29,6 +29,25 @@ def app():
 
     # Input field for the user to enter a topic
     topic = st.text_input("Enter a topic:")
+
+    # Where the magic happens, the prompt
+    text = f"""
+You should express what you want a model to do by \ 
+providing instructions that are as clear and \ 
+specific as you can possibly make them. \ 
+This will guide the model towards the desired output, \ 
+and reduce the chances of receiving irrelevant \ 
+or incorrect responses. Don't confuse writing a \ 
+clear prompt with writing a short prompt. \ 
+In many cases, longer prompts provide more clarity \ 
+and context for the model, which can lead to \ 
+more detailed and relevant outputs.
+"""
+topic = f"""
+Summarize the text delimited by triple backticks \ 
+into a single sentence.
+```{text}```
+"""
 
     # Button to generate content
     if st.button("Create"):
