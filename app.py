@@ -93,8 +93,8 @@ def app():
     the tools you use to reason about the task.  
     """
     
-    goal_prompt = """to write an step by step guide on how to perform the {taks} leveraged by AI tools a Business Cyborg\
-    """
+    #goal_prompt = """to write an step by step guide on how to perform the {taks} leveraged by AI tools a Business Cyborg\
+    #"""
 
     # Define a variable to store the contents of the file
     fixed_inspiration = ""
@@ -108,15 +108,9 @@ def app():
     
     prompt = f"""
     You are ```{role_prompt}``` and you write inspired by the following texts {fixed_inspiration}. \
-    You are going to ```{goal_prompt}``` with the following tools {tools_prompt} \
+    You are going to write an step by step guide to achieve the {tasks} includying if it is necessary the following tools {tools_prompt} \
     Your answer should be 1000 words. 
-    The structure of the content is: 
-    1. Introduction (A engaging short introduction describing how to perform the task \
-    as a Business Cyborg);  \
-    2. The step by step you created;  \
-    3. a short wrap up conclusion and an \
-    invitation to the reader to try the tools,  \
-    the method and to follow and become a Business Cyborg. \
+    Write and introduction before the step by step and a short conclusion after the step by step. 
     """
 
     # Button to generate content
