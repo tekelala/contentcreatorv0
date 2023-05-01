@@ -49,6 +49,20 @@ def app():
     # Input field for the user to enter a topic
     tasks = st.text_input("Enter a task:")
 
+    # Multiselect widget for choosing tools
+    predefined_tools = ["Microsoft 365", "Google Workspace", "OpenAI", "Canva", "Another Tool"]
+    selected_tools = st.multiselect("Select tools to use:", options=predefined_tools)
+
+    # Text input field for specifying an additional tool
+    additional_tool = ""
+    if "Another Tool" in selected_tools:
+        additional_tool = st.text_input("Enter the name of the additional tool:")
+
+    # Create the tools_prompt by concatenating the selected tools
+    tools_prompt = ", ".join([tool for tool in selected_tools if tool != "Another Tool"])
+    if additional_tool:
+        tools_prompt += f", {additional_tool}"
+
     # Where the magic happens, the prompt
     
     role_prompt = """Nice and insightful AI expert as Andrew Ng \
@@ -70,9 +84,11 @@ def app():
     
     prompt = f"""
     You are ```{role_prompt}``` and your goal is ```{goal_prompt}``` \
-    to perform with the assistance of AI tool the following ```{tasks}``` \ 
-    in 1000 words.
+    with the assistance of AI tools and the following ```{tools_prompt}``` \
+    to perform the following ```{tasks}``` in 1000 words.
     """
+
+    tools_prompt = 
 
     # Button to generate content
     if st.button("Create"):
