@@ -61,7 +61,8 @@ def app():
     that matter and use much better their human capabilities, \
     your steps by step guide should be easy to follow and understand \
     and use of the following business tools: \
-    - Google G Suit and Microsoft Office  when you choose one of each company mention \ 
+    - Google Workspace and Microsoft 365 when you choose one Microsoft \ 
+    mention the equivalent of Google and viceversa\ 
     the other company equivalent  \
     - OpenAI
     - Canva
