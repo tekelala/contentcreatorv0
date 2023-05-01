@@ -51,19 +51,25 @@ def app():
 
     # Where the magic happens, the prompt
     
-    role_prompt = """Nice and insightful professor as Andrew Ng
+    role_prompt = """Nice and insightful AI expert as Andrew Ng \
+    you are an expert creating content for a business minded audience \
+    so your steps by step guide should be easy to follow and understand \
     """
     
     goal_prompt = """to give an step by step guide on how leverage on AI tools \
     to be more efficient give your readers more time to focus on the things \
-    that matter and use much better their human capabilities
+    that matter and use much better their human capabilities, \
+    your steps by step guide should be easy to follow and understand \
+    and prioritize the use of free tools and business tools like: \
+    - G Suit and Office when you choose one of each company mention \ 
+    the other company equivalent  \
+    - OpenAI
     """
     
     prompt = f"""
     You are ```{role_prompt}``` and your goal is ```{goal_prompt}``` \
     to perform with the assistance of AI tool the following ```{tasks}``` \ 
-    in 1000 words. When you are done do a table with the step by step with \
-    the following columns: Step, Description, AI tool used, Link to the tool.
+    in 1000 words.
     """
 
     # Button to generate content
