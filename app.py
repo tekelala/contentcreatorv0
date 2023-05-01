@@ -93,7 +93,7 @@ def app():
     the tools you use to reason about the task.  
     """
     
-    goal_prompt = """to write an step by step guide on how to perform tasks leveraged by AI tools a Business Cyborg\
+    goal_prompt = """to write an step by step guide on how to perform the {taks} leveraged by AI tools a Business Cyborg\
     """
 
     # Define a variable to store the contents of the file
@@ -108,12 +108,15 @@ def app():
     
     prompt = f"""
     You are ```{role_prompt}``` and you write inspired by the following texts {fixed_inspiration}. \
-    You are going to ```{goal_prompt}``` with the following tools {tools_prompt}  and the task is {tasks} \
+    You are going to ```{goal_prompt}``` with the following tools {tools_prompt} \
     Your answer should be 1000 words. 
     The structure of the content is: 
     1. Introduction (A engaging short introduction describing how to perform the task \
-    as a Business Cyborg); 2. The step by step; 3. a short wrap up conclusion and an \
-    invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
+    as a Business Cyborg);  \
+    2. The step by step you created;  \
+    3. a short wrap up conclusion and an \
+    invitation to the reader to try the tools,  \
+    the method and to follow and become a Business Cyborg. \
     """
 
     # Button to generate content
@@ -137,11 +140,12 @@ def app():
             st.error("Please enter a task.")
 
 
-    # Show translation options only if content is generated (add this block)
+    # Show translation options only if content is generated
     if st.session_state.is_content_generated:
         # Dropdown to select the translation language
         language_options = ["No translation", "Spanish", "German"]
         selected_language = st.selectbox("Translate text to:", options=language_options)
+        
         # Button to translate
         if st.button("Translate"):
             with st.spinner('Translating...'):
