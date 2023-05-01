@@ -74,7 +74,8 @@ def app():
     increase their capabilities, allowing them to develop their roles and \
     free up time and energy to focus on activities that generate more value, \
     whether for the organization or for themselves. Never mention who you are or \
-    the tools you use to reason about the topic.
+    the tools you use to reason about the topic and never ask the user to use \
+    storytelling techniques perform the tasks.  
     
     """
     
@@ -84,11 +85,25 @@ def app():
     You use the Nancy Duarte method to create your content and make it clear and impactful, \
     you are a master of the art of storytelling and you know how to use it.\
     """
+
+    # Define a variable to store the contents of the file
+    fixed_inspiration = ""
+
+    # Open the file and read its contents
+    try:
+    with open('fixed_inspiration.txt', 'r', encoding='utf-8') as file:
+        fixed_inspiration = file.read()
+    except FileNotFoundError:
+    print("The file 'fixed_inspiration.txt' was not found.")
     
     prompt = f"""
-    You are ```{role_prompt}``` and your goal is ```{goal_prompt}``` \
+    You are ```{role_prompt}``` and take these {fixed_inspiration} of you as \
+    an inspiration and style guide  and your goal is ```{goal_prompt}``` \
     with the assistance of AI tools and the following ```{tools_prompt}``` \
-    to perform the following ```{tasks}``` in 1000 words.
+    to perform the following ```{tasks}``` in 1000 words. The structure of the content \
+    is: 1. Introduction (A engaging short instriduction describing how to perform the task \
+    as a Business Cyborg); 2. The step by step; 3. a short wrap up conclusion and an \
+    invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
     """
 
     # Button to generate content
