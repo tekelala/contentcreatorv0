@@ -4,7 +4,7 @@ import streamlit as st
 import os
 
 # Function to get the model completion
-def get_completion(prompt, model="gpt-4"):
+def get_completion(prompt, selected_model):
     # Set the OpenAI API key from the environment variable
     openai_api_key = os.getenv('OPENAI_API_KEY')
     
@@ -45,6 +45,10 @@ def get_completion_table(prompt, model="gpt-3.5-turbo"):
 def app():
     # Title of the application
     st.title("Content Creator, please provide the taks you want to get the step by step guide")
+
+     # Select widget for choosing GPT Model
+    predefined_models = ["gpt-3.5-turbo", "gpt-4"]
+    selected_model = st.select("Select model to use:", options=predefined_models)
 
     # Input field for the user to enter a topic
     tasks = st.text_input("Enter a task:")
