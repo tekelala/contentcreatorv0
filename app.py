@@ -92,7 +92,7 @@ def app():
     # Open the file and read its contents
     try:
         with open('fixed_inspiration.txt', 'r', encoding='utf-8') as file:
-        fixed_inspiration = file.read()
+            fixed_inspiration = file.read()
     except FileNotFoundError:
         print("The file 'fixed_inspiration.txt' was not found.")
     
