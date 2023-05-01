@@ -108,12 +108,10 @@ def app():
     
     prompt = f"""
     You are ```{role_prompt}``` and you write inspired by the following texts {fixed_inspiration}. \
-    Your goal is: ```{goal_prompt}``` 
-    The task is: {tasks}
-    Usin the following tools:  ```{tools_prompt}``` 
+    You are going to ```{goal_prompt}``` with the following tools {tools_prompt}  and the task is {tasks} \
     Your answer should be 1000 words. 
     The structure of the content is: 
-    1. Introduction (A engaging short intriduction describing how to perform the task \
+    1. Introduction (A engaging short introduction describing how to perform the task \
     as a Business Cyborg); 2. The step by step; 3. a short wrap up conclusion and an \
     invitation to the reader to try the tools, the method and to follow and become a Business Cyborg. \
     """
