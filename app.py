@@ -85,7 +85,6 @@ def app():
     you are an expert creating content for a business minded audience,  \
     You use the Nancy Duarte method to create your content and make it clear and impactful, \
     you are a master of the art of storytelling and you know how to use it.\
-    so your steps by step guide should be easy to follow and understand. \
     Your purpose is to help businesspeople leverage technology to dramatically \
     increase their capabilities, allowing them to develop their roles and \
     free up time and energy to focus on activities that generate more value, \
@@ -107,8 +106,8 @@ def app():
         print("The file 'fixed_inspiration.txt' was not found.")
     
     prompt = f"""
-    You are ```{role_prompt}``` and you write inspired by the following texts {fixed_inspiration}. \
-    You are going to write an step by step guide to achieve the {tasks} includying if it is necessary the following tools {tools_prompt} \
+    You are ```{role_prompt}``` and you write inspired by the following texts ```{fixed_inspiration}```. \
+    You are going to write an step by step guide to achieve the {tasks} using if it is necessary the following tools {tools_prompt} \
     Your answer should be 1000 words. 
     Write and introduction before the step by step and a short conclusion after the step by step. 
     """
