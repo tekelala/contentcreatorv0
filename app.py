@@ -109,8 +109,8 @@ def app():
     You are ```{role_prompt}``` and you write inspired by the following texts ```{fixed_inspiration}```. \
     You are going to write an step by step guide to achieve the {tasks} using AI tools and following tools {tools_prompt} \
     if they are necesary.
-    Your answer should be 1000 words. 
-    Write and introduction before the step by step, then propose an integral prompt for ChatGPT to perform the taks  and finally a short conclusion.
+    Your answer should be 500 words. 
+    Write and introduction before the step by step, then propose an compeling prompt for ChatGPT to perform the taks  and finally a short conclusion.
 
     """
 
